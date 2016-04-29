@@ -16,7 +16,7 @@
   </environment>
   </environments>
   <mappers>
- <mapper resource='py/pol/una/ii/pw/mapper/MemberMapper.xml'/>
+ <mapper resource='py/pol/una/ii/pw/mapper/ProveedorMapper.xml'/>
  <mapper resource='py/pol/una/ii/pw/mapper/ClienteMapper.xml'/>
  <mapper resource='py/pol/una/ii/pw/mapper/ProductoMapper.xml'/>
   </mappers>

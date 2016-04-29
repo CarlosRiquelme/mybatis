@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='py.pol.una.ii.pw.mapper.ClienteMapper'>
+
+  <resultMap type="py.pol.una.ii.pw.model.Cliente" id="ClienteResult">
+  	 <id property='id_cliente' column='id_cliente'/>
+    <result property='ruc' column='ruc'/>
+    <result property='nombre' column='nombre'/>
+    <result property='telefono' column='telefono'/>
+    <result property='saldo' column='saldo'/>
+  </resultMap>
+
+  <select id="getAllCliente" resultType="py.pol.una.ii.pw.model.Cliente">
+   SELECT * FROM CLIENTE 
+  </select>
+  
+  <select id="selectClienteById" parameterType="int" resultType="py.pol.una.ii.pw.model.Cliente">
+  	select * from cliente where id_cliente = #{id}
+  </select>
+
+   <insert id='insertCliente' parameterType='py.pol.una.ii.pw.model.Cliente' useGeneratedKeys='true' keyProperty='id_cliente'>
+   INSERT INTO CLIENTE(ruc,nombre,telefono,saldo )
+    VALUES(#{ruc}, #{nombre}, #{telefono}, #{saldo})
+  </insert>
+  
+  
+
+  <update id='updateCliente' parameterType='py.pol.una.ii.pw.model.Cliente'>
+    UPDATE CLIENTE 
+    SET
+     ruc= #{ruc},
+     nombre = #{nombre},
+     telefono = #{telefono},
+     saldo = #{saldo},
+    WHERE id_cliente = #{id_cliente}
+  </update>
+
+  <delete id='deleteCliente' parameterType='int'>
+    DELETE FROM CLIETE WHERE id_cliente = #{id_cliente}
+  </delete>
+ 
+</mapper>

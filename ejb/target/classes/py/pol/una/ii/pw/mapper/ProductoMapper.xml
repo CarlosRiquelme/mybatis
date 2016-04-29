@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='py.pol.una.ii.pw.mapper.ProductoMapper'>
+
+  
+
+  <select id="getAllProducto" parameterType= "map" resultType="py.pol.una.ii.pw.model.Producto">
+   SELECT * FROM producto LIMIT #{cantidad} OFFSET #{desde}
+  </select>
+  
+  
+  <select id="selectProductoNombre" parameterType= "String" resultType="py.pol.una.ii.pw.model.Producto">
+   SELECT * FROM producto where nombre=#{nombre}
+  </select>
+  
+  <select id="selectProductoById" parameterType="int" resultType="py.pol.una.ii.pw.model.Producto">
+  	select * from producto where id_producto = #{id}
+  </select>
+
+   <insert id='insertProducto' parameterType='py.pol.una.ii.pw.model.Producto' useGeneratedKeys='true' keyProperty='id_producto'>
+   INSERT INTO producto(nombre,precio_compra,precio_venta,cantidad )
+    VALUES(#{nombre}, #{precio_compra}, #{precio_venta}, #{cantidad})
+  </insert>
+  
+  
+
+  <update id='updateProducto' parameterType='py.pol.una.ii.pw.model.Producto'>
+    UPDATE producto 
+    SET
+     nombre = #{nombre},
+     precio_compra= #{precio_compra},
+     precio_venta = #{precio_venta},
+     cantidad = #{cantidad},
+    WHERE id_producto = #{id_producto}
+  </update>
+
+  <delete id='deleteProducto' parameterType='int'>
+    DELETE FROM CLIETE WHERE id_producto = #{id_producto}
+  </delete>
+  
+  
+  
+  
+  <select id="selectProductoDuplicadoById" parameterType="int" resultType="py.pol.una.ii.pw.model.ProductoDuplicado">
+  	select * from productoduplicado where id_producto = #{id}
+  </select>
+
+   <insert id='insertProductoDuplicado' parameterType='py.pol.una.ii.pw.model.ProductoDuplicado'>
+   INSERT INTO productoduplicado(id_producto,cantidad )
+    VALUES(#{id_producto}, #{cantidad})
+  </insert>
+  
+  
+
+  <update id='updateProductoDuplicado' parameterType='py.pol.una.ii.pw.model.ProductoDuplicado'>
+    UPDATE productoduplicado
+    SET
+     cantidad = #{cantidad},
+    WHERE id_producto = #{id_producto}
+  </update>
+  
+  
+ 
+</mapper>

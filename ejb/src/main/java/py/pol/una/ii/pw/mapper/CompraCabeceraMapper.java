@@ -10,6 +10,8 @@ public interface CompraCabeceraMapper {
 	
 	public CompraCabecera selectCompraCabeceraById(int id);
 	
+	public void insertCompraCabecera(CompraCabecera compraCabecera);
+	
 	
 
 }

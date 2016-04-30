@@ -7,32 +7,18 @@
  
 
   <select id="getAllCompraCabecera" resultType="py.pol.una.ii.pw.model.CompraCabecera">
-   SELECT * FROM compra_cab INNER JOIN proveedor ON compracabecera.id_proveedor=proveedor.id_proveedor 
+   SELECT * FROM compras_cab 
   </select>
  
   <select id="selectCompraCabeceraById" parameterType="int" resultType="py.pol.una.ii.pw.model.CompraCabecera">
-  	SELECT * FROM compra_cab INNER JOIN proveedor ON compracabecera.id_proveedor=proveedor.id_proveedor where id_compracabecera = #{id}
+  	SELECT * FROM compras_cab where id_compracabecera = #{id}
   </select>
 
    <insert id='insertCompraCabecera' parameterType='py.pol.una.ii.pw.model.CompraCabecera' useGeneratedKeys='true' keyProperty='id_compracabecera'>
-   INSERT INTO CompraCabecera(ruc,nombre,telefono,saldo )
+   INSERT INTO compras_cab(ruc,nombre,telefono,saldo )
     VALUES(#{ruc}, #{nombre}, #{telefono}, #{saldo})
   </insert>
   
-  
 
-  <update id='updateCompraCabecera' parameterType='py.pol.una.ii.pw.model.CompraCabecera'>
-    UPDATE CompraCabecera 
-    SET
-     ruc= #{ruc},
-     nombre = #{nombre},
-     telefono = #{telefono},
-     saldo = #{saldo},
-    WHERE id_compracabecera = #{id_compracabecera}
-  </update>
-
-  <delete id='deleteCompraCabecera' parameterType='int'>
-    DELETE FROM CompraCabecera WHERE id_compracabecera = #{id_compracabecera}
-  </delete>
  
 </mapper>

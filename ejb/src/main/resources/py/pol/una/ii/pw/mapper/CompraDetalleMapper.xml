@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='py.pol.una.ii.pw.mapper.CompraDetalleMapper'>
+
+ 
+
+  <select id="getAllCompraDetalle" resultType="py.pol.una.ii.pw.model.CompraDetalle">
+   SELECT * FROM compras_det INNER JOIN proveedor ON compradetalle.id_proveedor=proveedor.id_proveedor 
+  </select>
+ 
+  <select id="selectCompraDetalleById" parameterType="int" resultType="py.pol.una.ii.pw.model.CompraDetalle">
+  	SELECT * FROM compras_det INNER JOIN proveedor ON compradetalle.id_proveedor=proveedor.id_proveedor where id_compradetalle = #{id}
+  </select>
+
+   <insert id='insertCompraDetalle' parameterType='py.pol.una.ii.pw.model.CompraDetalle' useGeneratedKeys='true' keyProperty='id_compradetalle'>
+   INSERT INTO compras_det(ruc,nombre,telefono,saldo )
+    VALUES(#{ruc}, #{nombre}, #{telefono}, #{saldo})
+  </insert>
+  
+
+ 
+</mapper>

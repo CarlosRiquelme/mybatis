@@ -8,8 +8,14 @@ import javax.ejb.TransactionAttributeType;
 
 import org.apache.ibatis.session.SqlSession;
 
-import py.pol.una.ii.pw.mapper.CompraCabeceraMapper;
-import py.pol.una.ii.pw.model.CompraCabecera;
+import py.pol.una.ii.pw.mapper.VentaCabeceraMapper;
+import py.pol.una.ii.pw.mapper.VentaDetalleMapper;
+import py.pol.una.ii.pw.model.VentaCabecera;
+import py.pol.una.ii.pw.model.VentaDetalle;
+import py.pol.una.ii.pw.model.Producto;
+import py.pol.una.ii.pw.model.Cliente;
+import py.pol.una.ii.pw.util.Venta;
+import py.pol.una.ii.pw.util.VentaDet;
 import py.pol.una.ii.pw.util.MyBatisUtil;
 
 @Stateless
@@ -32,11 +38,73 @@ public class VentaCabeceraService {
 		  try{
 			  
 			  VentaCabeceraMapper ventacabeceraMapper = session.getMapper(VentaCabeceraMapper.class);
-			  return  ventacabeceraMapper.selectCompraCabeceraById(id);
+			  return  ventacabeceraMapper.selectVentaCabeceraById(id);
 		  }finally{
 		   session.close();
 		  }
 		 }
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public static void registerVenta(Venta venta)  {
+    	
+        
+    	try {
+
+			Cliente cliente = ClienteService.selectClienteById(venta.getCliente());
+			VentaCabecera ventaCabecera = new VentaCabecera();
+			ventaCabecera.setFecha(venta.getFecha());
+			ventaCabecera.setMonto(venta.getMonto());
+			ventaCabecera.setCliente(cliente);
+			
+			registerVentaCabecera(ventaCabecera);
+			
+			for (VentaDet ventaDet: venta.getVentaDetalle()){
+				Producto producto = ProductoService.selectProductoById(ventaDet.getProducto());
+				if (producto.getCantidad()>=ventaDet.getCantidad()){
+					VentaDetalle ventaDetalle = new VentaDetalle();
+					ventaDetalle.setProducto(producto);
+					ventaDetalle.setCantidad(ventaDet.getCantidad());
+					ventaDetalle.setVentaCabecera(ventaCabecera);
+					ventaDetalle.setMonto_parcial(ventaDet.getMonto_parcial());
+					registerVentaDetalle(ventaDetalle);
+					Float resta = producto.getCantidad() - ventaDetalle.getCantidad();
+					producto.setCantidad(resta);
+					ProductoService.updateProducto(producto);
+				}
+			}
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+    		
+
+    }
+    
+    public static void registerVentaCabecera(VentaCabecera ventaCabecera)  {
+    	
+    	System.out.println("Registering COMPRA Cabecera --- " + ventaCabecera.getCliente().getNombre());
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+    	try{
+    			VentaCabeceraMapper ventacabeceraMapper = session.getMapper(VentaCabeceraMapper.class);
+    			ventacabeceraMapper.insertVentaCabecera(ventaCabecera);	
+    		}finally{
+    			session.close();
+    	}
+    }
+
+    
+    public static void registerVentaDetalle(VentaDetalle ventaDetalle) {
+    	
+    		System.out.println("Registering COMPRA Detalle --- " + ventaDetalle.getProducto().getNombre());
+    		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+        	try{
+        			VentaDetalleMapper ventadetalleMapper = session.getMapper(VentaDetalleMapper.class);
+        			ventadetalleMapper.insertVentaDetalle(ventaDetalle);	
+        		}finally{
+        			session.close();
+        	}
+   
+    }
 	
 
 }

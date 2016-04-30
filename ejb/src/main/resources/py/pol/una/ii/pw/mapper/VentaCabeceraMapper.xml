@@ -16,7 +16,7 @@
 
    <insert id='insertVentaCabecera' parameterType='py.pol.una.ii.pw.model.VentaCabecera' useGeneratedKeys='true' keyProperty='id_ventacabecera'>
     INSERT INTO ventas_cab( fecha, monto, id_cliente)
-    VALUES (#{fecha}, #{monto}, #{id_cliente});
+    VALUES (#{fecha}, #{monto}, #{id_cliente})
   </insert>
   
   

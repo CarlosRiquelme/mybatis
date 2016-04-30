@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='py.pol.una.ii.pw.mapper.CompraDetalleMapper'>
+
+ 
+
+  <select id="getAllVentaDetalle" resultType="py.pol.una.ii.pw.model.VentaDetalle">
+   SELECT * FROM ventas_det 
+  </select>
+ 
+  <select id="selectVentaDetalleById" parameterType="int" resultType="py.pol.una.ii.pw.model.VentaDetalle">
+  	SELECT * FROM ventas_det where id_ventadetalle = #{id}
+  </select>
+
+   <insert id='insertVentaDetalle' parameterType='py.pol.una.ii.pw.model.VentaDetalle' useGeneratedKeys='true' keyProperty='id_ventadetalle'>
+    INSERT INTO public.ventas_det( cantidad, monto_parcial, id_producto, id_ventacabecera)
+    VALUES(#{cantidad}, #{monto_parcial}, #{id_producto}, #{id_ventacabecera})
+  </insert>
+  
+
+ 
+</mapper>

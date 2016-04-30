@@ -7,11 +7,11 @@
  
 
   <select id="getAllCompraDetalle" resultType="py.pol.una.ii.pw.model.CompraDetalle">
-   SELECT * FROM compras_det INNER JOIN proveedor ON compradetalle.id_proveedor=proveedor.id_proveedor 
+   SELECT * FROM compras_det 
   </select>
  
   <select id="selectCompraDetalleById" parameterType="int" resultType="py.pol.una.ii.pw.model.CompraDetalle">
-  	SELECT * FROM compras_det INNER JOIN proveedor ON compradetalle.id_proveedor=proveedor.id_proveedor where id_compradetalle = #{id}
+  	SELECT * FROM compras_det where id_compradetalle = #{id}
   </select>
 
    <insert id='insertCompraDetalle' parameterType='py.pol.una.ii.pw.model.CompraDetalle' useGeneratedKeys='true' keyProperty='id_compradetalle'>

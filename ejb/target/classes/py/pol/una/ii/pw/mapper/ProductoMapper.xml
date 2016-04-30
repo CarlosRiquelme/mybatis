@@ -37,7 +37,7 @@
   </update>
 
   <delete id='deleteProducto' parameterType='int'>
-    DELETE FROM CLIETE WHERE id_producto = #{id_producto}
+    DELETE FROM producto WHERE id_producto = #{id_producto}
   </delete>
   
   

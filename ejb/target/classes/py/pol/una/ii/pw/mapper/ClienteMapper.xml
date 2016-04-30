@@ -4,13 +4,6 @@
 
 <mapper namespace='py.pol.una.ii.pw.mapper.ClienteMapper'>
 
-  <resultMap type="py.pol.una.ii.pw.model.Cliente" id="ClienteResult">
-  	 <id property='id_cliente' column='id_cliente'/>
-    <result property='ruc' column='ruc'/>
-    <result property='nombre' column='nombre'/>
-    <result property='telefono' column='telefono'/>
-    <result property='saldo' column='saldo'/>
-  </resultMap>
 
   <select id="getAllCliente" resultType="py.pol.una.ii.pw.model.Cliente">
    SELECT * FROM CLIENTE 
@@ -38,7 +31,7 @@
   </update>
 
   <delete id='deleteCliente' parameterType='int'>
-    DELETE FROM CLIETE WHERE id_cliente = #{id_cliente}
+    DELETE FROM CLIENTE WHERE id_cliente = #{id_cliente}
   </delete>
  
 </mapper>

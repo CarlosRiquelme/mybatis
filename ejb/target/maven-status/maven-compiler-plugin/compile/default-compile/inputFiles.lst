@@ -1,0 +1,16 @@
+/home/toshiba/git/mybatis/ejb/src/main/java/py/pol/una/ii/pw/service/ClienteService.java
+/home/toshiba/git/mybatis/ejb/src/main/java/py/pol/una/ii/pw/model/Proveedor.java
+/home/toshiba/git/mybatis/ejb/src/main/java/py/pol/una/ii/pw/model/CompraCabecera.java
+/home/toshiba/git/mybatis/ejb/src/main/java/py/pol/una/ii/pw/mapper/ClienteMapper.java
+/home/toshiba/git/mybatis/ejb/src/main/java/py/pol/una/ii/pw/model/Producto.java
+/home/toshiba/git/mybatis/ejb/src/main/java/py/pol/una/ii/pw/util/CompraDet.java
+/home/toshiba/git/mybatis/ejb/src/main/java/py/pol/una/ii/pw/mapper/ProveedorMapper.java
+/home/toshiba/git/mybatis/ejb/src/main/java/py/pol/una/ii/pw/mapper/ProductoMapper.java
+/home/toshiba/git/mybatis/ejb/src/main/java/py/pol/una/ii/pw/model/Cliente.java
+/home/toshiba/git/mybatis/ejb/src/main/java/py/pol/una/ii/pw/model/ProductoDuplicado.java
+/home/toshiba/git/mybatis/ejb/src/main/java/py/pol/una/ii/pw/util/Compra.java
+/home/toshiba/git/mybatis/ejb/src/main/java/py/pol/una/ii/pw/service/ProveedorService.java
+/home/toshiba/git/mybatis/ejb/src/main/java/py/pol/una/ii/pw/mapper/CompraCabeceraMapper.java
+/home/toshiba/git/mybatis/ejb/src/main/java/py/pol/una/ii/pw/service/ProductoService.java
+/home/toshiba/git/mybatis/ejb/src/main/java/py/pol/una/ii/pw/util/MyBatisUtil.java
+/home/toshiba/git/mybatis/ejb/src/main/java/py/pol/una/ii/pw/service/CompraCabeceraService.java

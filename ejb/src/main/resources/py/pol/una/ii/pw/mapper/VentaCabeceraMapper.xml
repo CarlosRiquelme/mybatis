@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='py.pol.una.ii.pw.mapper.VentaCabeceraMapper'>
+
+ 
+
+  <select id="getAllVentaCabecera" resultType="py.pol.una.ii.pw.model.VentaCabecera">
+   SELECT * FROM ventas_cab 
+  </select>
+ 
+  <select id="selectVentaCabeceraById" parameterType="int" resultType="py.pol.una.ii.pw.model.VentaCabecera">
+  	SELECT * FROM ventas_cab where id_ventacabecera = #{id}
+  </select>
+
+   <insert id='insertVentaCabecera' parameterType='py.pol.una.ii.pw.model.VentaCabecera' useGeneratedKeys='true' keyProperty='id_ventacabecera'>
+    INSERT INTO ventas_cab( fecha, monto, id_cliente)
+    VALUES (#{fecha}, #{monto}, #{id_cliente});
+  </insert>
+  
+  
+
+  <update id='updateVentaCabecera' parameterType='py.pol.una.ii.pw.model.VentaCabecera'>
+    UPDATE ventas_cab 
+    SET
+     fecha= #{fecha},
+     monto = #{monto},
+     id_cliente = #{id_cliente},
+    WHERE id_ventacabecera = #{id_ventacabecera}
+  </update>
+
+  <delete id='deleteVentaCabecera' parameterType='int'>
+    DELETE FROM ventas_cab WHERE id_ventacabecera = #{id_ventacabecera}
+  </delete>
+ 
+</mapper>

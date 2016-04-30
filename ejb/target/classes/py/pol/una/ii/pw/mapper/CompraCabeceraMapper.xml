@@ -15,8 +15,8 @@
   </select>
 
    <insert id='insertCompraCabecera' parameterType='py.pol.una.ii.pw.model.CompraCabecera' useGeneratedKeys='true' keyProperty='id_compracabecera'>
-   INSERT INTO compras_cab(ruc,nombre,telefono,saldo )
-    VALUES(#{ruc}, #{nombre}, #{telefono}, #{saldo})
+   INSERT INTO compras_cab (fecha,monto,id_proveedor )
+    VALUES(#{fecha}, #{monto}, #{id_proveedor})
   </insert>
   
 

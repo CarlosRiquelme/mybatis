@@ -21,5 +21,8 @@
  <mapper resource='py/pol/una/ii/pw/mapper/ProductoMapper.xml'/>
  <mapper resource='py/pol/una/ii/pw/mapper/CompraCabeceraMapper.xml'/>
  <mapper resource='py/pol/una/ii/pw/mapper/CompraDetalleMapper.xml'/>
+ <mapper resource='py/pol/una/ii/pw/mapper/VentaCabeceraMapper.xml'/>
+ <mapper resource='py/pol/una/ii/pw/mapper/VentaDetalleMapper.xml'/>
+ <mapper resource='py/pol/una/ii/pw/mapper/PagoMapper.xml'/>
   </mappers>
 </configuration>

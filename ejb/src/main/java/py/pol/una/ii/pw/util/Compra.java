@@ -8,7 +8,7 @@ import py.pol.una.ii.pw.util.CompraDet;
 public class Compra {
 
 	private Integer proveedor;
-	private String fecha;
+	private Date fecha;
 	private Float monto;
 	private List<CompraDet> compraDetalle;
 	
@@ -19,10 +19,10 @@ public class Compra {
 	public void setProveedor(Integer proveedor) {
 		this.proveedor = proveedor;
 	}
-	public String getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
-	public void setFecha(String fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 	public Float getMonto() {

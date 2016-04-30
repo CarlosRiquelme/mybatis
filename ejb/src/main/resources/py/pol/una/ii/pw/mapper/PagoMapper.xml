@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='py.pol.una.ii.pw.mapper.PagoMapper'>
+
+ 
+
+  <select id="getAllPago" resultType="py.pol.una.ii.pw.model.PagoMapper">
+   SELECT * FROM pago 
+  </select>
+ 
+  <select id="selectPagoById" parameterType="int" resultType="py.pol.una.ii.pw.model.Pago">
+  	SELECT * FROM pago where id_pago = #{id}
+  </select>
+
+   <insert id='insertPago' parameterType='py.pol.una.ii.pw.model.Pago' useGeneratedKeys='true' keyProperty='id_pago'>
+    INSERT INTO pago( fecha, monto, id_cliente)
+    VALUES (#{fecha}, #{monto}, #{id_cliente}) 
+  </insert>
+  
+  
+
+  <update id='updatePago' parameterType='py.pol.una.ii.pw.model.Pago'>
+    UPDATE pago 
+    SET
+     fecha= #{fecha},
+     monto = #{monto},
+     id_cliente = #{id_cliente},
+    WHERE id_pago = #{id_pago}
+  </update>
+
+  <delete id='deletePago' parameterType='int'>
+    DELETE FROM pago WHERE id_pago = #{id_pago}
+  </delete>
+ 
+</mapper>

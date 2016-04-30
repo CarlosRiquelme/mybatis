@@ -8,7 +8,6 @@ import javax.ejb.TransactionAttributeType;
 
 import org.apache.ibatis.session.SqlSession;
 
-import py.pol.una.ii.pw.mapper.ClienteMapper;
 import py.pol.una.ii.pw.mapper.CompraCabeceraMapper;
 import py.pol.una.ii.pw.mapper.CompraDetalleMapper;
 import py.pol.una.ii.pw.model.CompraCabecera;

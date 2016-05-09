@@ -51,9 +51,18 @@ public class ProductoService {
 		try{
 			try{
 				ProductoMapper productoMapper = session.getMapper(ProductoMapper.class);
-				productoMapper.insertProducto(producto);
-				productoEventSrc.fire(producto);
+				//System.out.println("producto " + productoMapper.getClass().getName());
+				Producto p = productoMapper.selectProductoNombre(producto.getNombre());
+				//System.out.println("producto " + p);
+				if (p == null){
+					productoMapper.insertProducto(producto);
+					//productoEventSrc.fire(producto);
+				}else{
+					System.out.println("El producto "+ producto.getNombre()+" ya exite, se guardata en la tabla de productos duplicados.");
+					guardarDuplicado(producto);
+				}
 			}catch(Exception e){
+				//System.out.println("producto error");
 				throw e;
 			}
 		}finally{
@@ -75,11 +84,13 @@ public class ProductoService {
 				pd= new ProductoDuplicado();
 				pd.setId_producto(id);
 				pd.setCantidad(1L);
+				productoMapper.insertProductoDuplicado(pd);	
 			}else{
 				pd.setCantidad(pd.getCantidad() + 1);
+				productoMapper.updateProductoDuplicado(pd);
 			}
 			
-			productoMapper.insertProductoDuplicado(pd);	
+			
 		}finally{
 			session.close();
 		}

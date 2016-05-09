@@ -13,7 +13,7 @@ public class VentaCabecera implements Serializable {
 
 	private Integer id_ventaCabecera;
 
-	private Cliente cliente;	
+	private Integer id_cliente;	
 	private Date fecha;
 	private Float monto;
 	public Integer getId_ventaCabecera() {
@@ -24,12 +24,11 @@ public class VentaCabecera implements Serializable {
 		this.id_ventaCabecera = id_ventaCabecera;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public Integer getId_cliente() {
+		return id_cliente;
 	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setId_cliente(Integer id_cliente) {
+		this.id_cliente = id_cliente;
 	}
 
 	public Date getFecha() {

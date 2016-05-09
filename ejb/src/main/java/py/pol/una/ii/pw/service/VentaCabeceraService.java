@@ -49,18 +49,25 @@ public class VentaCabeceraService {
     	
         
     	try {
-
-			Cliente cliente = ClienteService.selectClienteById(venta.getCliente());
-			VentaCabecera ventaCabecera = new VentaCabecera();
-			ventaCabecera.setFecha(venta.getFecha());
-			ventaCabecera.setMonto(venta.getMonto());
-			ventaCabecera.setCliente(cliente);
-			
-			registerVentaCabecera(ventaCabecera);
-			
-			for (VentaDet ventaDet: venta.getVentaDetalle()){
+    		String ban ="N";
+    		for (VentaDet ventaDet: venta.getVentaDetalle()){
 				Producto producto = ProductoService.selectProductoById(ventaDet.getProducto());
-				if (producto.getCantidad()>=ventaDet.getCantidad()){
+				if (producto.getCantidad()<ventaDet.getCantidad()){
+					System.out.println("ERROR! se desea vender "+ ventaDet.getCantidad()+" unidades del producto "+ producto.getNombre()+ " pero solo se tiene en stock "+producto.getCantidad()+" unidades.");
+					ban="S";
+				}
+			}
+    		if (ban=="N"){
+				//Cliente cliente = ClienteService.selectClienteById(venta.getCliente());
+				VentaCabecera ventaCabecera = new VentaCabecera();
+				ventaCabecera.setFecha(venta.getFecha());
+				ventaCabecera.setMonto(venta.getMonto());
+				ventaCabecera.setId_cliente(venta.getCliente());
+				
+				registerVentaCabecera(ventaCabecera);
+				
+				for (VentaDet ventaDet: venta.getVentaDetalle()){
+					Producto producto = ProductoService.selectProductoById(ventaDet.getProducto()); 
 					VentaDetalle ventaDetalle = new VentaDetalle();
 					ventaDetalle.setProducto(producto);
 					ventaDetalle.setCantidad(ventaDet.getCantidad());
@@ -69,9 +76,9 @@ public class VentaCabeceraService {
 					registerVentaDetalle(ventaDetalle);
 					Float resta = producto.getCantidad() - ventaDetalle.getCantidad();
 					producto.setCantidad(resta);
-					ProductoService.updateProducto(producto);
+					ProductoService.updateProducto(producto); 
 				}
-			}
+    		}
 		}
 		catch(Exception e){
 			System.out.println(e.getMessage());
@@ -82,7 +89,7 @@ public class VentaCabeceraService {
     
     public static void registerVentaCabecera(VentaCabecera ventaCabecera)  {
     	
-    	System.out.println("Registering COMPRA Cabecera --- " + ventaCabecera.getCliente().getNombre());
+    	System.out.println("Registering COMPRA Cabecera --- Id_cliente: " + ventaCabecera.getId_cliente());
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
     	try{
     			VentaCabeceraMapper ventacabeceraMapper = session.getMapper(VentaCabeceraMapper.class);

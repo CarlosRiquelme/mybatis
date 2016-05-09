@@ -132,7 +132,9 @@ public class ProductoResourceRESTService {
 			// Create an "ok" response
 			builder = Response.ok();
 		} catch (Exception e) {
-			if (e.getCause().getCause().getMessage().contains("nombre")) {
+			
+			System.out.println(e.getMessage());
+			/*if (e.getCause().getCause().getMessage().contains("nombre")) {
 				builder = Response.status(Response.Status.BAD_REQUEST)
 						.entity(Collections.singletonMap("error", "Nombre duplicado"));
 				ProductoService.guardarDuplicado(producto);
@@ -142,7 +144,7 @@ public class ProductoResourceRESTService {
 				Map<String, String> responseObj = new HashMap<String, String>();
 				responseObj.put("error", e.getMessage());
 				builder = Response.status(Response.Status.BAD_REQUEST).entity(responseObj);
-			}
+			}*/
 		}
 
 		return builder.build();

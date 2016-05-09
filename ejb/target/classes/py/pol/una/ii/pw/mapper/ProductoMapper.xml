@@ -44,18 +44,18 @@
   
   
   <select id="selectProductoDuplicadoById" parameterType="int" resultType="py.pol.una.ii.pw.model.ProductoDuplicado">
-  	select * from productoduplicado where id_producto = #{id}
+  	select * from producto_duplicado where id_producto = #{id}
   </select>
 
    <insert id='insertProductoDuplicado' parameterType='py.pol.una.ii.pw.model.ProductoDuplicado'>
-   INSERT INTO productoduplicado(id_producto,cantidad )
+   INSERT INTO producto_duplicado(id_producto,cantidad )
     VALUES(#{id_producto}, #{cantidad})
   </insert>
   
   
 
   <update id='updateProductoDuplicado' parameterType='py.pol.una.ii.pw.model.ProductoDuplicado'>
-    UPDATE productoduplicado
+    UPDATE producto_duplicado
     SET
      cantidad = #{cantidad},
     WHERE id_producto = #{id_producto}

@@ -26,7 +26,7 @@
     SET
      ruc= #{ruc},
      nombre = #{nombre},
-     telefono = #{telefono},
+     telefono = #{telefono}
 
     WHERE id_proveedor = #{id_proveedor}
   </update>

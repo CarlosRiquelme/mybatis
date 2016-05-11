@@ -57,7 +57,7 @@
   <update id='updateProductoDuplicado' parameterType='py.pol.una.ii.pw.model.ProductoDuplicado'>
     UPDATE producto_duplicado
     SET
-     cantidad = #{cantidad},
+     cantidad = #{cantidad}
     WHERE id_producto = #{id_producto}
   </update>
   

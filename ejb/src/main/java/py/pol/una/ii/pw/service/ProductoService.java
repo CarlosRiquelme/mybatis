@@ -18,8 +18,8 @@ import py.pol.una.ii.pw.util.MyBatisUtil;
 @Stateless
 public class ProductoService {
 	
-	@Inject
-	private static Event<Producto> productoEventSrc;
+	//@Inject
+	//private static Event<Producto> productoEventSrc;
 	
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)

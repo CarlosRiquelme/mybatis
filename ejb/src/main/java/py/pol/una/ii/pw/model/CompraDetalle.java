@@ -13,12 +13,12 @@ public class CompraDetalle implements Serializable{
 	private Integer id_compraDetalle;
 	
 
-	private Producto producto;
+	private Integer id_producto;
 
 	private Float cantidad;
 
 
-	private CompraCabecera compraCabecera;
+	private Integer id_compracabecera;
 	
 	public Integer getId_compraDetalle() {
 		return id_compraDetalle;
@@ -36,20 +36,20 @@ public class CompraDetalle implements Serializable{
 		this.cantidad = cantidad;
 	}
 
-	public CompraCabecera getCompraCabecera() {
-		return compraCabecera;
+	public Integer getCompraCabecera() {
+		return id_compracabecera;
 	}
 
-	public void setCompraCabecera(CompraCabecera compraCabecera) {
-		this.compraCabecera = compraCabecera;
+	public void setCompraCabecera(Integer id_compracabecera) {
+		this.id_compracabecera = id_compracabecera;
 	}
 
-	public Producto getProducto() {
-		return producto;
+	public Integer getProducto() {
+		return id_producto;
 	}
 
-	public void setProducto(Producto producto) {
-		this.producto = producto;
+	public void setProducto(Integer id_producto) {
+		this.id_producto = id_producto;
 	}
 
 }

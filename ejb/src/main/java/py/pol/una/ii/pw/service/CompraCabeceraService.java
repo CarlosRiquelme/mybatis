@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import py.pol.una.ii.pw.mapper.CompraCabeceraMapper;
 import py.pol.una.ii.pw.mapper.CompraDetalleMapper;
+import py.pol.una.ii.pw.mapper.VentaCabeceraMapper;
 import py.pol.una.ii.pw.model.CompraCabecera;
 import py.pol.una.ii.pw.model.CompraDetalle;
 import py.pol.una.ii.pw.model.Producto;
@@ -52,24 +53,29 @@ public class CompraCabeceraService {
         
     	try {
 
-			Proveedor proveedor = ProveedorService.selectProveedorById(compra.getProveedor());
+			//Proveedor proveedor = ProveedorService.selectProveedorById(compra.getProveedor());
 			CompraCabecera compraCabecera = new CompraCabecera();
 			compraCabecera.setFecha(compra.getFecha());
 			compraCabecera.setMonto(compra.getMonto());
-			compraCabecera.setProveedor(proveedor);
+			compraCabecera.setProveedor(compra.getProveedor());
+			SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+			CompraCabeceraMapper compracabeceraMapper = session.getMapper(CompraCabeceraMapper.class);
+			compraCabecera.setId_compraCabecera(compracabeceraMapper.selectNextCompraCabecera());
+			session.close();
 			
 			registerCompraCabecera(compraCabecera);
 			
 			for (CompraDet compraDet: compra.getCompraDetalle()){
 				Producto producto = ProductoService.selectProductoById(compraDet.getProducto());
+				System.out.println("producto "+ producto.getNombre());
 				CompraDetalle compraDetalle = new CompraDetalle();
-				compraDetalle.setProducto(producto);
+				compraDetalle.setProducto(compraDet.getProducto()); 
 				compraDetalle.setCantidad(compraDet.getCantidad());
-				compraDetalle.setCompraCabecera(compraCabecera);
+				compraDetalle.setCompraCabecera(compraCabecera.getId_compraCabecera());
 				registerCompraDetalle(compraDetalle);
 				Float suma = producto.getCantidad() + compraDetalle.getCantidad();
 				producto.setCantidad(suma);
-				ProductoService.createProducto(producto);
+				ProductoService.updateProducto(producto);
 			}
 		}
 		catch(Exception e){
@@ -81,7 +87,7 @@ public class CompraCabeceraService {
     
     public static void registerCompraCabecera(CompraCabecera compraCabecera)  {
     	
-    	System.out.println("Registering COMPRA Cabecera --- " + compraCabecera.getProveedor().getNombre());
+    	System.out.println("Registering COMPRA Cabecera --- " + compraCabecera.getProveedor());
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
     	try{
     			CompraCabeceraMapper compracabeceraMapper = session.getMapper(CompraCabeceraMapper.class);
@@ -94,7 +100,7 @@ public class CompraCabeceraService {
     
     public static void registerCompraDetalle(CompraDetalle compraDetalle) {
     	
-    		System.out.println("Registering COMPRA Detalle --- " + compraDetalle.getProducto().getNombre());
+    		System.out.println("Registering COMPRA Detalle --- " + compraDetalle.getProducto());
     		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
         	try{
         			CompraDetalleMapper compradetalleMapper = session.getMapper(CompraDetalleMapper.class);

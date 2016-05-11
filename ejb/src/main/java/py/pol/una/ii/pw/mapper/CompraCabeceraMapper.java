@@ -12,6 +12,6 @@ public interface CompraCabeceraMapper {
 	
 	public void insertCompraCabecera(CompraCabecera compraCabecera);
 	
-	
+	public Integer selectNextCompraCabecera();
 
 }

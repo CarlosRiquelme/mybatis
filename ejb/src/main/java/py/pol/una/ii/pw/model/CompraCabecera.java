@@ -13,7 +13,7 @@ public class CompraCabecera implements Serializable {
 
 	private Integer id_compraCabecera;
 
-	private Proveedor proveedor;	
+	private Integer id_proveedor;	
 	private Date fecha;
 	private Float monto;
 	public Integer getId_compraCabecera() {
@@ -22,11 +22,11 @@ public class CompraCabecera implements Serializable {
 	public void setId_compraCabecera(Integer id_compraCabecera) {
 		this.id_compraCabecera = id_compraCabecera;
 	}
-	public Proveedor getProveedor() {
-		return proveedor;
+	public Integer getProveedor() {
+		return id_proveedor;
 	}
-	public void setProveedor(Proveedor proveedor) {
-		this.proveedor = proveedor;
+	public void setProveedor(Integer id_proveedor) {
+		this.id_proveedor = id_proveedor;
 	}
 	public Date getFecha() {
 		return fecha;

@@ -7,8 +7,8 @@ public class CompraDet {
 	public Integer getProducto() {
 		return producto;
 	}
-	public void setProducto(Integer producto) {
-		this.producto = producto;
+	public void setProducto(Integer id_producto) {
+		this.producto = id_producto;
 	}
 	public Float getCantidad() {
 		return cantidad;

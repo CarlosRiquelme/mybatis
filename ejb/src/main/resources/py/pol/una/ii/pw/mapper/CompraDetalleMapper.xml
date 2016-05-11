@@ -16,7 +16,7 @@
 
    <insert id='insertCompraDetalle' parameterType='py.pol.una.ii.pw.model.CompraDetalle' useGeneratedKeys='true' keyProperty='id_compradetalle'>
    INSERT INTO compras_det(cantidad,id_compracabecera,id_producto )
-    VALUES(#{cantidad}, #{id_compracabecera}, #{id_proveedor})
+    VALUES(#{cantidad}, #{id_compracabecera}, #{id_producto})
   </insert>
   
 

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
   'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 
-<mapper namespace='py.pol.una.ii.pw.mapper.CompraDetalleMapper'>
+<mapper namespace='py.pol.una.ii.pw.mapper.VentaDetalleMapper'>
 
  
 
@@ -15,8 +15,8 @@
   </select>
 
    <insert id='insertVentaDetalle' parameterType='py.pol.una.ii.pw.model.VentaDetalle' useGeneratedKeys='true' keyProperty='id_ventadetalle'>
-    INSERT INTO public.ventas_det( cantidad, monto_parcial, id_producto, id_ventacabecera)
-    VALUES(#{cantidad}, #{monto_parcial}, #{id_producto}, #{id_ventacabecera})
+    INSERT INTO public.ventas_det( monto_parcial, cantidad, id_producto, id_ventacabecera)
+    VALUES( #{monto_parcial}, #{cantidad}, #{id_producto}, #{id_ventacabecera})
   </insert>
   
 

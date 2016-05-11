@@ -13,7 +13,6 @@ import py.pol.una.ii.pw.mapper.VentaDetalleMapper;
 import py.pol.una.ii.pw.model.VentaCabecera;
 import py.pol.una.ii.pw.model.VentaDetalle;
 import py.pol.una.ii.pw.model.Producto;
-import py.pol.una.ii.pw.model.Cliente;
 import py.pol.una.ii.pw.util.Venta;
 import py.pol.una.ii.pw.util.VentaDet;
 import py.pol.una.ii.pw.util.MyBatisUtil;
@@ -51,10 +50,15 @@ public class VentaCabeceraService {
     	try {
     		String ban ="N";
     		for (VentaDet ventaDet: venta.getVentaDetalle()){
-				Producto producto = ProductoService.selectProductoById(ventaDet.getProducto());
-				if (producto.getCantidad()<ventaDet.getCantidad()){
-					System.out.println("ERROR! se desea vender "+ ventaDet.getCantidad()+" unidades del producto "+ producto.getNombre()+ " pero solo se tiene en stock "+producto.getCantidad()+" unidades.");
-					ban="S";
+				Producto producto = ProductoService.selectProductoById(ventaDet.getId_producto());
+				if (producto != null){
+					if (producto.getCantidad()<ventaDet.getCantidad()){
+						System.out.println("ERROR! se desea vender "+ ventaDet.getCantidad()+" unidades del producto "+ producto.getNombre()+ " pero solo se tiene en stock "+producto.getCantidad()+" unidades.");
+						ban="S";
+					}
+				}
+				else{
+					System.out.println("El producto con Id "+ventaDet.getId_producto() +" no existe.");
 				}
 			}
     		if (ban=="N"){
@@ -63,16 +67,26 @@ public class VentaCabeceraService {
 				ventaCabecera.setFecha(venta.getFecha());
 				ventaCabecera.setMonto(venta.getMonto());
 				ventaCabecera.setId_cliente(venta.getCliente());
-				
+				SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+				VentaCabeceraMapper ventacabeceraMapper = session.getMapper(VentaCabeceraMapper.class);
+				ventaCabecera.setId_ventaCabecera(ventacabeceraMapper.selectNextVentaCabecera());
+				session.close();
 				registerVentaCabecera(ventaCabecera);
 				
 				for (VentaDet ventaDet: venta.getVentaDetalle()){
-					Producto producto = ProductoService.selectProductoById(ventaDet.getProducto()); 
+					Producto producto = ProductoService.selectProductoById(ventaDet.getId_producto()); 
+					System.out.println("producto "+ producto.getNombre());
 					VentaDetalle ventaDetalle = new VentaDetalle();
-					ventaDetalle.setProducto(producto);
+					ventaDetalle.setId_producto(ventaDet.getId_producto());
 					ventaDetalle.setCantidad(ventaDet.getCantidad());
-					ventaDetalle.setVentaCabecera(ventaCabecera);
+					ventaDetalle.setIdVentaCabecera(ventaCabecera.getId_ventaCabecera());
 					ventaDetalle.setMonto_parcial(ventaDet.getMonto_parcial());
+					/*
+					System.out.println("cantidad "+ ventaDetalle.getCantidad());
+					System.out.println("monto_parcial "+ ventaDetalle.getMonto_parcial());
+					System.out.println("id_producto "+ ventaDetalle.getId_producto());
+					System.out.println("id_ventacabecera "+ ventaDetalle.getIdVentaCabecera());
+					*/
 					registerVentaDetalle(ventaDetalle);
 					Float resta = producto.getCantidad() - ventaDetalle.getCantidad();
 					producto.setCantidad(resta);
@@ -89,7 +103,7 @@ public class VentaCabeceraService {
     
     public static void registerVentaCabecera(VentaCabecera ventaCabecera)  {
     	
-    	System.out.println("Registering COMPRA Cabecera --- Id_cliente: " + ventaCabecera.getId_cliente());
+    	System.out.println("Registering COMPRA Cabecera --- Id_cliente: " + ventaCabecera.getId_cliente()+"Id_ventaCabecera: " + ventaCabecera.getId_ventaCabecera());
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
     	try{
     			VentaCabeceraMapper ventacabeceraMapper = session.getMapper(VentaCabeceraMapper.class);
@@ -102,8 +116,9 @@ public class VentaCabeceraService {
     
     public static void registerVentaDetalle(VentaDetalle ventaDetalle) {
     	
-    		System.out.println("Registering COMPRA Detalle --- " + ventaDetalle.getProducto().getNombre());
+    		System.out.println("Registering COMPRA Detalle --- " + ventaDetalle.getId_producto());
     		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+    		System.out.println("session " + session.getClass());
         	try{
         			VentaDetalleMapper ventadetalleMapper = session.getMapper(VentaDetalleMapper.class);
         			ventadetalleMapper.insertVentaDetalle(ventaDetalle);	

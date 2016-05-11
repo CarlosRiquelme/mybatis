@@ -11,5 +11,7 @@ public interface VentaCabeceraMapper {
 	public VentaCabecera selectVentaCabeceraById(int id);
 
 	public void insertVentaCabecera(VentaCabecera ventaCabecera);
+	
+	public Integer selectNextVentaCabecera();
 
 }

@@ -13,13 +13,13 @@ public class VentaDetalle implements Serializable{
 	private Integer id_ventaDetalle;
 	
 
-	private Producto producto;
+	private Integer id_producto;
 
 	private Float cantidad;
 	private Float monto_parcial;
 
 
-	private VentaCabecera ventaCabecera;
+	private Integer id_ventacabecera;
 	
 	public Integer getId_ventaDetalle() {
 		return id_ventaDetalle;
@@ -29,12 +29,12 @@ public class VentaDetalle implements Serializable{
 		this.id_ventaDetalle = id_ventaDetalle;
 	}
 
-	public Producto getProducto() {
-		return producto;
+	public Integer getId_producto() {
+		return id_producto;
 	}
 
-	public void setProducto(Producto producto) {
-		this.producto = producto;
+	public void setId_producto(Integer id_producto) {
+		this.id_producto = id_producto;
 	}
 
 	public Float getCantidad() {
@@ -53,12 +53,12 @@ public class VentaDetalle implements Serializable{
 		this.monto_parcial = monto_parcial;
 	}
 
-	public VentaCabecera getVentaCabecera() {
-		return ventaCabecera;
+	public Integer getIdVentaCabecera() {
+		return id_ventacabecera;
 	}
 
-	public void setVentaCabecera(VentaCabecera ventaCabecera) {
-		this.ventaCabecera = ventaCabecera;
+	public void setIdVentaCabecera(Integer id_ventacabecera) {
+		this.id_ventacabecera = id_ventacabecera;
 	}
 
 }

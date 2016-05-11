@@ -32,7 +32,7 @@
      nombre = #{nombre},
      precio_compra= #{precio_compra},
      precio_venta = #{precio_venta},
-     cantidad = #{cantidad},
+     cantidad = #{cantidad}
     WHERE id_producto = #{id_producto}
   </update>
 

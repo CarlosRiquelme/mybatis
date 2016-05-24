@@ -54,7 +54,7 @@ public class ClienteResourceRESTService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createCliente(Cliente cliente) {
-    	System.out.println("Objeto recibido---" + cliente);
+
         Response.ResponseBuilder builder = null;
         try {
         	Float inicial = (float) 0;

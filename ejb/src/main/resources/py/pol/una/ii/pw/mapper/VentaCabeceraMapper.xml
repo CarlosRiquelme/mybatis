@@ -14,7 +14,7 @@
   	SELECT * FROM ventas_cab where id_ventacabecera = #{id}
   </select>
 
-   <insert id='insertVentaCabecera' parameterType='py.pol.una.ii.pw.model.VentaCabecera' useGeneratedKeys='true' keyProperty='id_ventaCabecera'>
+  <insert id='insertVentaCabecera' parameterType='py.pol.una.ii.pw.model.VentaCabecera' useGeneratedKeys='true' keyProperty='id_ventaCabecera'>
     INSERT INTO ventas_cab( id_ventaCabecera,fecha, monto, id_cliente)
     VALUES (#{id_ventaCabecera},#{fecha}, #{monto}, #{id_cliente})
   </insert>

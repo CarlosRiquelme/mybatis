@@ -1,15 +1,15 @@
 package py.pol.una.ii.pw.util;
 
 public class VentaDet {
-	private Integer id_producto;
+	private Integer producto;
 	private Float cantidad;
 	private Float monto_parcial;
 	
 	public Integer getId_producto() {
-		return id_producto;
+		return producto;
 	}
-	public void setId_producto(Integer id_producto) {
-		this.id_producto = id_producto;
+	public void setId_producto(Integer producto) {
+		this.producto = producto;
 	}
 	public Float getCantidad() {
 		return cantidad;

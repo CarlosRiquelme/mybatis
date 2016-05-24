@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='py.pol.una.ii.pw.mapper.AuthenticateMapper'>
+
+
+
+
+	<insert id='insertUsuario' parameterType='py.pol.una.ii.pw.model.Usuario' useGeneratedKeys='true' keyProperty='id_usuario'>
+   		INSERT INTO USUARIO (usuario,pass,rol,acces_token )
+    	VALUES (#{usuario}, #{pass}, #{rol}, #{acces_token})
+	</insert>
+
+
+
+	<update id='updateUsuario' parameterType='py.pol.una.ii.pw.model.Usuario' >
+    	UPDATE USUARIO
+    	SET
+      	acces_token= #{acces_token}
+    	WHERE id_usuario = #{id_usuario}
+	</update>
+  
+   <select id="selectUsuario" parameterType= "py.pol.una.ii.pw.util.Credentials" resultType="py.pol.una.ii.pw.model.Usuario">
+   SELECT * FROM USUARIO where usuario=#{username} and pass=#{password}
+  </select>
+  
+  <select id="selectToken" parameterType= "String" resultType="py.pol.una.ii.pw.model.Usuario">
+   SELECT * FROM USUARIO where acces_token=#{token}
+  </select>
+  
+
+
+  
+  
+
+ 
+</mapper>

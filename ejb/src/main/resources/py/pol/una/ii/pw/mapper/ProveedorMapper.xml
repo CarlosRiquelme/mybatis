@@ -15,8 +15,8 @@
   </select>
 
    <insert id='insertProveedor' parameterType='py.pol.una.ii.pw.model.Proveedor' useGeneratedKeys='true' keyProperty='id_proveedor'>
-   INSERT INTO proveedor(id_proveedor,ruc,nombre,telefono )
-    VALUES(#{id_proveedor},#{ruc}, #{nombre}, #{telefono} )
+   INSERT INTO proveedor(ruc,nombre,telefono )
+    VALUES(#{ruc}, #{nombre}, #{telefono} )
   </insert>
   
   

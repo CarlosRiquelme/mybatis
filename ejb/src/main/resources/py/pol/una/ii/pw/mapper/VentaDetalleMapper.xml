@@ -15,8 +15,8 @@
   </select>
 
    <insert id='insertVentaDetalle' parameterType='py.pol.una.ii.pw.model.VentaDetalle' useGeneratedKeys='true' keyProperty='id_ventadetalle'>
-    INSERT INTO public.ventas_det( monto_parcial, cantidad, id_producto, id_ventacabecera)
-    VALUES( #{monto_parcial}, #{cantidad}, #{id_producto}, #{id_ventacabecera})
+    INSERT INTO ventas_det( monto_parcial, cantidad, id_producto, id_ventacabecera)
+    VALUES( #{monto_parcial}, #{cantidad}, #{producto}, #{id_ventacabecera})
   </insert>
   
 

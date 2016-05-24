@@ -14,10 +14,12 @@
   	SELECT * FROM compras_cab where id_compracabecera = #{id}
   </select>
 
-   <insert id='insertCompraCabecera' parameterType='py.pol.una.ii.pw.model.CompraCabecera' useGeneratedKeys='true' keyProperty='id_compracabecera'>
+    <insert id='insertCompraCabecera' parameterType='py.pol.una.ii.pw.model.CompraCabecera' useGeneratedKeys='true' keyProperty='id_compracabecera'>
    INSERT INTO compras_cab (id_compraCabecera,fecha,monto,id_proveedor )
     VALUES(#{id_compraCabecera},#{fecha}, #{monto}, #{id_proveedor})
   </insert>
+  
+  
   <select id="selectNextCompraCabecera"   resultType="int">
   	select nextval('secuencia_compras_cab'::regclass)
   </select>
